@@ -5,3 +5,70 @@ description = "Advent of code 2024 solutions"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0.1",
+    "pytest>=8.3.4",
+]
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # flake8-bandit
+    "S",
+    # pep8-naming
+    "N",
+    # flake8-comprehensions
+    "C4",
+    # pydocstyle
+    "D",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.extend-per-file-ignores]
+"tests/*.py" = [
+    "S101", # Use of assert
+    "N999", # Invalid module name
+    "D100", # Missing docstring in public module
+    "D102", # Missing docstring in public method
+    "D103", # Missing docstring in public function
+    "D104", # Missing docstring in public package
+    "D205", # 1 blank line required between summary line and description
+]
+"*/__init__.py" = [
+    "F401", # Unused import,
+    "D104", # Missing docstring in public package
+]
+
+[tool.mypy]
+python_version = "3.11"
+exclude = "tests"
+disallow_untyped_defs = true
+disallow_any_unimported = true
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+warn_unused_configs = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
