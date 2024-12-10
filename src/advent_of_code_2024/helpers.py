@@ -33,3 +33,18 @@ def load_column_input(file: str, line_separator: str = " ") -> list[list[int]]:
         columns.append(column)
 
     return columns
+
+
+def load_row_input(file: str, line_separator: str = " ") -> list[list[int]]:
+    """Load input file with multiple rows.
+
+    Row values are converted to ints.
+
+    """
+    lines = load_input(file)
+
+    lines_split = [x.split(line_separator) for x in lines]
+
+    lines_split_int = [[int(x) for x in line] for line in lines_split]
+
+    return lines_split_int
